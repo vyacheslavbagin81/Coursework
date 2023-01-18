@@ -35,6 +35,40 @@ public class Main {
 
         //    Реализуем метод printAllFullNames (распечатать список ФИО всех сотрудников)
         printAllFullNames(employee);
+
+        // Метод для изменения зарплаты, передаем параметр int salaryIncreaseRatio - на какой процент меняем зарплату
+        changeSalary(employee, 10);
+        // Выводим список с новыми зарплатами
+        printAllEmployees(employee);
+
+        // Новый класс для работы с отделом
+        WorkingWithTheDepartment workingWithTheDepartment = new WorkingWithTheDepartment(employee, size);
+
+        // Метод для вывода списка сотрудников с минимальной зарплатой по отделу, задаем в параметре номер отдела
+        workingWithTheDepartment.minSalaryByDepartment(1);
+
+        // Метод для вывода списка сотрудников с максимальной зарплатой по отделу, задаем в параметре номер отдела
+        workingWithTheDepartment.maxSalaryByDepartment(1);
+
+        // Реализуем метод printSumSalaryDepartment для вывода суммы затрат на зарплаты в месяц по отделу, задаем в параметре номер отдела
+        workingWithTheDepartment.printSumSalaryDepartment(1);
+
+        //Реализуем метод printAverageSalary для нахождения среднего значения зарплаты в месяц по отделу, задаем в параметре номер отдела
+        workingWithTheDepartment.printAverageSalary(1);
+
+        // Метод для изменения зарплаты, задаем в параметре номер отдела
+        // и передаем параметр int salaryIncreaseRatioOfDepartment - на какой процент меняем зарплату
+        workingWithTheDepartment.changeSalary(1, 10);
+        // Выводим список с новыми зарплатами
+        workingWithTheDepartment.printAllEmployeesDepartment(1);
+
+
+        //    Метод для поиска сотрудников с зарплатой ниже заданной, в параметре передаем значение для сравнения
+        searchForASalaryBelow(employee, averageSalary(employee));
+
+        //    Метод для поиска сотрудников с зарплатой выше или равной заданной, в параметре передаем значение для сравнения
+        searchForAHigherSalary(employee, averageSalary(employee));
+
     }
 
 
@@ -127,6 +161,42 @@ public class Main {
         for (int i = 0; i < size; i++) {
             Employee employee = employees[i];
             System.out.println(employee.getFullName());
+        }
+        printSeparator();
+    }
+
+    // Метод для изменения зарплаты
+    public static void changeSalary(Employee[] employees, int salaryIncreaseRatio) {
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            employee.setSalary(employee.getSalary() + employee.getSalary() * salaryIncreaseRatio / 100);
+        }
+    }
+
+    //    Метод для поиска сотрудников с зарплатой ниже заданной
+    public static void searchForASalaryBelow(Employee[] employees, double parameter) {
+        System.out.println();
+        System.out.println("Список сотрудников с заработной платой менее " + parameter + " ");
+        printSeparator();
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employee.getSalary() < parameter) {
+                System.out.println("id-" + employee.getId() + " " + employee.getFullName() + " Заработная плата: " + employee.getSalary());
+            }
+        }
+        printSeparator();
+    }
+
+    //    Метод для поиска сотрудников с зарплатой выше заданной
+    public static void searchForAHigherSalary(Employee[] employees, double parameter) {
+        System.out.println();
+        System.out.println("Список сотрудников с заработной платой выше " + parameter + " ");
+        printSeparator();
+        for (int i = 0; i < size; i++) {
+            Employee employee = employees[i];
+            if (employee.getSalary() >= parameter) {
+                System.out.println("id-" + employee.getId() + " " + employee.getFullName() + " Заработная плата: " + employee.getSalary());
+            }
         }
         printSeparator();
     }
