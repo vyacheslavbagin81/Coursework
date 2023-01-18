@@ -78,8 +78,6 @@ public class Main {
             System.out.println("Нельзя добавить данные, закончилось место");
         }
         Employee newEmployee = new Employee(fullName, department, salary);
-        id++;
-        newEmployee.setId(id);
         employees[size++] = newEmployee;
         return newEmployee;
     }
