@@ -1,19 +1,4 @@
-public class WorkingWithTheDepartment {
-    private final Employee[] employees;
-    private final int size;
-
-    public Employee[] getEmployees() {
-        return employees;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public WorkingWithTheDepartment(Employee[] employees, int size) {
-        this.employees = employees;
-        this.size = size;
-    }
+public record WorkingWithTheDepartment(Employee[] employees, int size) {
 
     //    Реализуем метод printAllEmployees (распечатать список всех сотрудников)
     public void printAllEmployeesDepartment(int departmentNumber) {
